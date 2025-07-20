@@ -37,24 +37,19 @@ const Navbar = () => {
 
           <div className="hidden md:block">
             <div className="ml-10 flex items-center space-x-8">
-              <a
-                href="/#features"
-                className="hover:text-blue-600 transition-colors duration-200"
-              >
-                Features
-              </a>
+
               <Link
-                to="/Courses"
-                className="hover:text-blue-600 transition-colors duration-200"
-              >
-                Courses
-              </Link>
-              <a
-                href="/#reviews"
-                className="hover:text-blue-600 transition-colors duration-200"
+                to="/#reviews"
+                className="hover:text-blue-600 text-black dark:text-white transition-colors duration-200"
               >
                 Reviews
-              </a>
+              </Link>
+              <Link
+                to="/events"
+                className="hover:text-blue-600 text-black dark:text-white transition-colors duration-200"
+              >
+                Events
+              </Link>
               <Link
                 to="/login"
                 className="bg-gradient-to-r from-blue-600 to-purple-600 text-white px-6 py-2 rounded-lg hover:from-blue-700 hover:to-purple-700 transition-all duration-200 transform hover:scale-105"
