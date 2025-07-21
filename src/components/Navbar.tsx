@@ -37,13 +37,6 @@ const Navbar = () => {
 
           <div className="hidden md:block">
             <div className="ml-10 flex items-center space-x-8">
-
-              <Link
-                to="/#reviews"
-                className="hover:text-blue-600 text-black dark:text-white transition-colors duration-200"
-              >
-                Reviews
-              </Link>
               <Link
                 to="/events"
                 className="hover:text-blue-600 text-black dark:text-white transition-colors duration-200"
