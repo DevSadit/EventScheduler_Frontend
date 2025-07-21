@@ -27,8 +27,7 @@ type EventType = {
 };
 
 const Events = () => {
-  const [evnts, setEvnts] = useState<EventType[]>([]); // initially empty
-
+  const [evnts, setEvnts] = useState<EventType[]>([]);
   const [viewMode, setViewMode] = useState("grid");
   const [searchTerm, setSearchTerm] = useState("");
   const [selectedCategory, setSelectedCategory] = useState("all");
@@ -58,7 +57,9 @@ const Events = () => {
   // Function to close the modal
   const closeModal = () => setIsModalOpen(false);
 
-  const handleInputChange = (e) => {
+  const handleInputChange = (
+    e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement>
+  ) => {
     const { name, value } = e.target;
     setFormData((prev) => ({
       ...prev,
@@ -117,16 +118,13 @@ const Events = () => {
   });
 
   const activeEvents = filteredEvents.filter((event) => !event.archived);
-  const archivedEvents = filteredEvents.filter((event) => event.archived);
 
   return (
     <section className="dark:bg-gray-950 bg-gray-50 min-h-screen transition-colors duration-300">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
         {/* Hero Section */}
-        <div className="text-center mb-16">
-          <div className="inline-flex items-center justify-center w-20 h-20 bg-gradient-to-r from-blue-500 to-purple-600 rounded-2xl mb-6 shadow-lg">
-            <Calendar className="w-10 h-10 text-white" />
-          </div>
+        <div className="text-center py-10 mb-16">
+        
 
           <h1 className="text-4xl md:text-5xl font-bold text-gray-900 dark:text-white mb-6 bg-gradient-to-r from-gray-900 via-blue-800 to-purple-800 dark:from-white dark:via-blue-200 dark:to-purple-200 bg-clip-text ">
             Your Events
@@ -281,7 +279,7 @@ const Events = () => {
               }`}
             >
               {activeEvents.map((event) => (
-                <EventCard event={event} setEvnts={setEvnts} key={event.id} />
+                <EventCard event={event} setEvents={setEvnts} setIsModalOpen={setIsModalOpen} key={event.id} />
               ))}
             </div>
           </div>
@@ -301,7 +299,7 @@ const Events = () => {
                 ? "Try adjusting your search or filter criteria."
                 : "Create your first event to get started."}
             </p>
-            <button className="inline-flex items-center px-6 py-3 bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 text-white font-semibold rounded-xl transition-all duration-200 shadow-md hover:shadow-lg">
+            <button onClick={() => setIsModalOpen(true)} className="inline-flex items-center px-6 py-3 bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 text-white font-semibold rounded-xl transition-all duration-200 shadow-md hover:shadow-lg">
               <Plus className="w-5 h-5 mr-2" />
               Create Event
             </button>

@@ -43,12 +43,6 @@ const Navbar = () => {
               >
                 Events
               </Link>
-              <Link
-                to="/login"
-                className="bg-gradient-to-r from-blue-600 to-purple-600 text-white px-6 py-2 rounded-lg hover:from-blue-700 hover:to-purple-700 transition-all duration-200 transform hover:scale-105"
-              >
-                Login
-              </Link>
             </div>
           </div>
 
@@ -73,29 +67,11 @@ const Navbar = () => {
           className={`md:hidden bg-white border-t border-gray-200 dark:bg-gray-900 dark:border-gray-800`}
         >
           <div className="px-2 pt-2 pb-3 space-y-1 sm:px-3">
-            <a
-              href="#features"
-              className="block px-3 py-2 hover:text-blue-600 transition-colors duration-200"
-            >
-              Features
-            </a>
-            <a
-              href="#about"
-              className="block px-3 py-2 hover:text-blue-600 transition-colors duration-200"
-            >
-              About
-            </a>
-            <a
-              href="#testimonials"
-              className="block px-3 py-2 hover:text-blue-600 transition-colors duration-200"
-            >
-              Reviews
-            </a>
             <Link
-              to="/login"
-              className="block w-full mt-2 bg-gradient-to-r from-blue-600 to-purple-600 text-white px-6 py-2 rounded-lg hover:from-blue-700 hover:to-purple-700 transition-all duration-200 text-center"
+              to="events"
+              className="block px-3 py-2 hover:text-blue-600 transition-colors duration-200"
             >
-              Login
+              Events
             </Link>
           </div>
         </div>

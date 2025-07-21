@@ -49,7 +49,7 @@ const Testimonial = () => {
               className="bg-white border p-4 rounded-xl border-gray-200 shadow-sm dark:bg-gray-800 dark:border-gray-700"
             >
               <div className="flex mb-4">
-                {[...Array(testimonial.rating)].map((a, i) => (
+                {[...Array(testimonial.rating)].map((_, i) => (
                   <Star
                     key={i}
                     className="w-5 h-5 text-yellow-400 fill-current"

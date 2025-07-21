@@ -1,32 +1,63 @@
 import { Calendar, Clock, Tag } from "lucide-react";
-import { useState } from "react";
+import Swal from "sweetalert2";
 import axios from "axios";
 interface Event {
   id: string;
   title: string;
   date: string;
   time: string;
-  category: string;
   notes?: string;
+  category: string;
   archived?: boolean;
 }
 
 interface EventCardProps {
   event: Event;
-  setEvnts: React.Dispatch<React.SetStateAction<Event[]>>;
+  setEvents: React.Dispatch<React.SetStateAction<Event[]>>;
+  setIsModalOpen: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
-const EventCard = ({ event, setEvnts }: EventCardProps) => {
-  const [editingId, setEditingId] = useState<string | null>(null);
+const EventCard = ({ event, setEvents, setIsModalOpen }: EventCardProps) => {
 
-  const handleDelete = async (id: string) => {
+const handleEdit = () => {
+  setIsModalOpen(true);
+  // You may want to set the current event to edit in a parent state as well
+};
+
+const handleDelete = async (id: string) => {
+  const result = await Swal.fire({
+    title: "Are you sure?",
+    text: "You won't be able to revert this!",
+    icon: "warning",
+    showCancelButton: true,
+    confirmButtonColor: "#d33",
+    cancelButtonColor: "#3085d6",
+    confirmButtonText: "Yes, delete it!",
+  });
+
+  if (result.isConfirmed) {
     try {
       await axios.delete(`http://localhost:5000/events/${id}`);
-      setEvnts((prev) => prev.filter((event) => event.id !== id));
+      setEvents((prev) => prev.filter((event) => event.id !== id));
+
+      await Swal.fire({
+        title: "Deleted!",
+        text: "Your event has been deleted.",
+        icon: "success",
+      });
     } catch (error) {
       console.error("Failed to delete event:", error);
+      await Swal.fire({
+        title: "Error!",
+        text: "There was a problem deleting the event.",
+        icon: "error",
+      });
     }
-  };
+  }
+};
+
+
+
 
   const getCategoryColor = (category: string) => {
     const colors: { [key: string]: string } = {
@@ -113,7 +144,10 @@ const EventCard = ({ event, setEvnts }: EventCardProps) => {
         )}
 
         <div className="flex space-x-2 pt-2">
-          <button className="flex-1 bg-blue-50 hover:bg-blue-100 dark:bg-blue-900/20 dark:hover:bg-blue-900/30 text-blue-600 dark:text-blue-400 font-medium py-2 px-4 rounded-xl transition-all duration-200 text-sm">
+          <button
+            onClick={handleEdit}
+            className="flex-1 bg-blue-50 hover:bg-blue-100 dark:bg-blue-900/20 dark:hover:bg-blue-900/30 text-blue-600 dark:text-blue-400 font-medium py-2 px-4 rounded-xl transition-all duration-200 text-sm"
+          >
             Edit
           </button>
           <button
