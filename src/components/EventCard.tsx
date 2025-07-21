@@ -1,19 +1,11 @@
 import { Calendar, Clock, Tag } from "lucide-react";
 import Swal from "sweetalert2";
 import axios from "axios";
-interface Event {
-  id: string;
-  title: string;
-  date: string;
-  time: string;
-  notes?: string;
-  category: string;
-  archived?: boolean;
-}
+import type { EventType } from "../types.ts";
 
 interface EventCardProps {
-  event: Event;
-  setEvents: React.Dispatch<React.SetStateAction<Event[]>>;
+  event: EventType;
+  setEvents: React.Dispatch<React.SetStateAction<EventType[]>>;
   setIsModalOpen: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
