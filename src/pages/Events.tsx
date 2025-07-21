@@ -43,7 +43,7 @@ const Events = () => {
   useEffect(() => {
     const fetchEvents = async () => {
       try {
-        const response = await axios.get("http://localhost:5000/events");
+        const response = await axios.get("https://eventscheduler-backend-0u04.onrender.com/events");
         setEvnts(response.data);
       } catch (error) {
         console.error("Error fetching events:", error);
@@ -81,7 +81,7 @@ const Events = () => {
     const data = { title, notes, category, date, time };
 
     try {
-      const res = await axios.post("http://localhost:5000/events", data); // Send to backend
+      const res = await axios.post("https://eventscheduler-backend-0u04.onrender.com/events", data); // Send to backend
 
       // Optional: Update event list on UI immediately (assuming you use useState for `events`)
       setEvnts((prev) => [...prev, res.data]);

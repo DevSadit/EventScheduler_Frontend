@@ -29,7 +29,7 @@ const handleDelete = async (id: string) => {
 
   if (result.isConfirmed) {
     try {
-      await axios.delete(`http://localhost:5000/events/${id}`);
+      await axios.delete(`https://eventscheduler-backend-0u04.onrender.com/events/${id}`);
       setEvents((prev) => prev.filter((event) => event.id !== id));
 
       await Swal.fire({
